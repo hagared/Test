@@ -95,21 +95,21 @@ function setupThree() {
     state.renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
-  // Lights: extremely dim ambient + flashlight attached to camera
-  const ambient = new THREE.AmbientLight(0x0a0809, 0.18);
+  // Lights: very dim ambient + flashlight attached to camera
+  const ambient = new THREE.AmbientLight(0x141014, 0.45);
   state.scene.add(ambient);
 
   // Subtle hemi for ground/ceiling shading
   const hemi = new THREE.HemisphereLight(0x110a0a, 0x000000, 0.08);
   state.scene.add(hemi);
 
-  const flashlight = new THREE.SpotLight(0xfff2c0, 14, 22, Math.PI / 7, 0.45, 1.3);
+  const flashlight = new THREE.SpotLight(0xfff2c0, 32, 34, Math.PI / 4.2, 0.55, 1.0);
   flashlight.position.set(0, 0, 0);
   flashlight.castShadow = true;
   flashlight.shadow.mapSize.width = 1024;
   flashlight.shadow.mapSize.height = 1024;
   flashlight.shadow.camera.near = 0.1;
-  flashlight.shadow.camera.far = 22;
+  flashlight.shadow.camera.far = 34;
   flashlight.shadow.bias = -0.0015;
   state.camera.add(flashlight);
   // Need a target that we'll move with camera direction
@@ -237,7 +237,7 @@ function startGame() {
 
 function toggleFlashlight() {
   state.flashlightOn = !state.flashlightOn;
-  state.flashlight.intensity = state.flashlightOn ? 14 : 0;
+  state.flashlight.intensity = state.flashlightOn ? 32 : 0;
   state.audio.flashlightClick();
 }
 
@@ -398,10 +398,10 @@ function updateFlashlight(dt) {
   const flickerProb = d < 6 ? 0.04 : d < 12 ? 0.008 : 0;
   state.flashlightFlickerTimer -= dt;
   if (state.flashlightFlickerTimer <= 0 && Math.random() < flickerProb) {
-    state.flashlight.intensity = 1.5;
+    state.flashlight.intensity = 3;
     state.flashlightFlickerTimer = 0.08 + Math.random() * 0.12;
   } else if (state.flashlightFlickerTimer <= 0) {
-    state.flashlight.intensity = 14;
+    state.flashlight.intensity = 32;
   }
 }
 
