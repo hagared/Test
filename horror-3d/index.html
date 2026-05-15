@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ДОМ — 3D хоррор</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/three.module.js",
+      "three/addons/controls/PointerLockControls.js": "./vendor/three/controls/PointerLockControls.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="intro" class="overlay">
+    <div class="intro-box">
+      <h1 class="title glitch" data-text="ДОМ">ДОМ</h1>
+      <p class="subtitle">найди 5 страниц. не оборачивайся.</p>
+
+      <div class="warning">
+        <strong>ВНИМАНИЕ:</strong> громкие звуки, мигающий свет, скримеры.<br/>
+        Не играй, если есть проблемы со здоровьем (эпилепсия, сердце, тревожность).<br/>
+        Лучше в наушниках и в темноте.
+      </div>
+
+      <div class="controls-help">
+        <div><b>WASD</b> — двигаться</div>
+        <div><b>Мышь</b> — смотреть</div>
+        <div><b>Shift</b> — бежать (устаёшь)</div>
+        <div><b>F</b> — фонарик вкл/выкл</div>
+        <div><b>Esc</b> — пауза</div>
+      </div>
+
+      <button id="startBtn" class="start-btn">ВОЙТИ В ДОМ</button>
+
+      <div class="footer-note">наушники = +100 к страху</div>
+    </div>
+  </div>
+
+  <div id="hud" class="hidden">
+    <div id="pages-counter">0 / 5</div>
+    <div id="stamina-bar"><div id="stamina-fill"></div></div>
+    <div id="message"></div>
+    <div id="crosshair">·</div>
+  </div>
+
+  <div id="vignette"></div>
+  <div id="static-overlay"></div>
+  <div id="flash-overlay"></div>
+
+  <div id="jumpscare" class="hidden">
+    <canvas id="jumpscare-canvas"></canvas>
+  </div>
+
+  <div id="pause" class="overlay hidden">
+    <div class="intro-box">
+      <h2 class="title">ПАУЗА</h2>
+      <p class="subtitle">кликни, чтобы продолжить</p>
+      <button id="resumeBtn" class="start-btn">ПРОДОЛЖИТЬ</button>
+    </div>
+  </div>
+
+  <div id="gameover" class="overlay hidden">
+    <div class="intro-box">
+      <h1 id="gameover-title" class="title glitch" data-text="ОН НАШЁЛ ТЕБЯ">ОН НАШЁЛ ТЕБЯ</h1>
+      <p id="gameover-subtitle" class="subtitle">страниц собрано: <span id="final-pages">0</span> / 5</p>
+      <button id="restartBtn" class="start-btn">ЕЩЁ РАЗ</button>
+    </div>
+  </div>
+
+  <canvas id="game"></canvas>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
