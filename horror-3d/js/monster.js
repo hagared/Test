@@ -1,4 +1,4 @@
-import * as THREE from "https://esm.sh/three@0.160.0";
+import * as THREE from "three";
 import { CELL_SIZE, CELLS_X, CELLS_Z, collides, moveAndCollide } from "./maze.js";
 
 // Slender-style figure: very tall, dark suit, white face. The "fear" of it

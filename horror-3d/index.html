@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>ДОМ — 3D хоррор</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://esm.sh" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/three.module.js",
+      "three/addons/controls/PointerLockControls.js": "./vendor/three/controls/PointerLockControls.js"
+    }
+  }
+  </script>
 </head>
 <body>
   <div id="intro" class="overlay">

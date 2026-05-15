@@ -1,4 +1,4 @@
-import * as THREE from "https://esm.sh/three@0.160.0";
+import * as THREE from "three";
 
 // Recursive backtracker maze on a CELL_X x CELL_Z grid.
 // Each cell is CELL_SIZE world units. Walls are placed on cell edges.

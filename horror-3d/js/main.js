@@ -1,5 +1,5 @@
-import * as THREE from "https://esm.sh/three@0.160.0";
-import { PointerLockControls } from "https://esm.sh/three@0.160.0/examples/jsm/controls/PointerLockControls.js";
+import * as THREE from "three";
+import { PointerLockControls } from "three/addons/controls/PointerLockControls.js";
 
 import {
   generateMaze, buildMazeMesh, moveAndCollide,
