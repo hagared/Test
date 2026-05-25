@@ -18,7 +18,7 @@ local Players   = game:GetService("Players")
 -- КОНФИГ
 ----------------------------------------------------------------
 local CFG = {
-    BASE_PLATE_SIZE   = 1500,
+    BASE_PLATE_SIZE   = 1900,
 
     -- Игровая зона (где может ходить игрок)
     PLAY_RADIUS       = 150,
@@ -32,8 +32,8 @@ local CFG = {
 
     -- Город
     CITY_INNER_R      = 175,   -- сразу за стеной
-    CITY_OUTER_R      = 520,
-    CITY_RING_COUNT   = 4,     -- сколько колец зданий
+    CITY_OUTER_R      = 700,
+    CITY_RING_COUNT   = 6,     -- сколько колец зданий
     BUILDINGS_PER_RING= 14,    -- по умолчанию
 
     -- Мусор (только в игровой зоне)
@@ -96,8 +96,8 @@ do
     Lighting.OutdoorAmbient       = Color3.fromRGB(95, 90, 100)
     Lighting.ColorShift_Top       = Color3.fromRGB(50, 35, 30)
     Lighting.ColorShift_Bottom    = Color3.fromRGB(20, 22, 28)
-    Lighting.FogStart             = 150
-    Lighting.FogEnd               = 750
+    Lighting.FogStart             = 200
+    Lighting.FogEnd               = 1000
     Lighting.FogColor             = Color3.fromRGB(95, 85, 80)
 
     for _, child in ipairs(Lighting:GetChildren()) do
@@ -464,10 +464,12 @@ do
     -- 4 кольца зданий: ближнее с самыми высокими (как Манхэттен)
     -- ring index 1..N: радиус и высота
     local rings = {
-        { r = 180,  count = 14, hMin = 90,  hMax = 180, sxMin = 22, sxMax = 38 }, -- передний ряд - небоскрёбы
-        { r = 250,  count = 16, hMin = 70,  hMax = 140, sxMin = 24, sxMax = 40 },
-        { r = 340,  count = 18, hMin = 50,  hMax = 110, sxMin = 22, sxMax = 38 },
-        { r = 450,  count = 22, hMin = 30,  hMax = 80,  sxMin = 20, sxMax = 36 }, -- дальний фон
+        { r = 180,  count = 22, hMin = 100, hMax = 200, sxMin = 22, sxMax = 38 }, -- передний ряд - небоскрёбы
+        { r = 245,  count = 28, hMin = 80,  hMax = 160, sxMin = 24, sxMax = 40 },
+        { r = 320,  count = 34, hMin = 60,  hMax = 130, sxMin = 22, sxMax = 38 },
+        { r = 410,  count = 40, hMin = 45,  hMax = 100, sxMin = 20, sxMax = 36 },
+        { r = 510,  count = 46, hMin = 30,  hMax = 80,  sxMin = 20, sxMax = 36 }, -- средняя дальность
+        { r = 620,  count = 52, hMin = 25,  hMax = 65,  sxMin = 18, sxMax = 32 }, -- дальний фон-силуэт
     }
 
     for ringIdx, ring in ipairs(rings) do
@@ -497,22 +499,22 @@ do
     end
 
     -- Несколько "случайных" зданий между кольцами для плотности
-    for i = 1, 25 do
+    for i = 1, 60 do
         local angle = math.random() * math.pi * 2
-        local r = rnd(210, 480)
+        local r = rnd(210, 600)
         local x = math.cos(angle) * r
         local z = math.sin(angle) * r
-        local sx = rnd(18, 30)
-        local sz = rnd(18, 30)
-        local h  = rnd(40, 130)
+        local sx = rnd(16, 30)
+        local sz = rnd(16, 30)
+        local h  = rnd(35, 140)
         local yaw = math.atan2(-x, -z) + rnd(-0.3, 0.3)
         buildSkyscraper(x, z, sx, sz, h, yaw, cityFolder)
     end
 
     -- Несколько полностью обрушенных зданий — низкие груды на земле
-    for i = 1, 14 do
+    for i = 1, 30 do
         local angle = math.random() * math.pi * 2
-        local r = rnd(180, 470)
+        local r = rnd(180, 600)
         local cx = math.cos(angle) * r
         local cz = math.sin(angle) * r
         local pile = Instance.new("Model")
